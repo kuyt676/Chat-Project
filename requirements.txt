@@ -1,0 +1,8 @@
+langchain
+openai
+faiss-cpu
+pyyaml
+sqlalchemy
+tqdm
+requests
+python-dotenv

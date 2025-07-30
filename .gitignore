@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.env
+.env
+
+# VSCode
+.vscode/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# SQLite database and cache
+articles.db
+.langchain.db
+
+# FAISS vector store
+faiss_articles/
+
+# System prompt and other YAMLs (if sensitive)
+system_prompt.yaml
+
+# Docker
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
