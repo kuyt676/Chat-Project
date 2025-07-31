@@ -1,4 +1,5 @@
 # MS_Inference
+![Architecture Diagram](inference-architecture.png)
 
 This project is an intelligent research assistant for answering questions about articles using both structured SQL search and semantic vector search.
 
