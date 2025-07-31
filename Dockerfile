@@ -15,6 +15,9 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt .
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
+# Install Uvicorn for FastAPI serving
+RUN pip install uvicorn
+
 # Copy project files
 COPY . .
 
@@ -22,4 +25,4 @@ COPY . .
 # (You may want to use docker-compose for this in production)
 
 # Default command
-CMD ["python", "inference.py"]
+CMD ["uvicorn", "inference:app", "--host", "0.0.0.0", "--port", "8000"]

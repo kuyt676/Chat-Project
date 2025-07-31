@@ -1,6 +1,8 @@
 from dotenv import load_dotenv
 load_dotenv()
 
+from fastapi import FastAPI, Request
+from pydantic import BaseModel
 from langchain.chat_models import ChatOpenAI
 from langchain.agents import Tool, initialize_agent
 from langchain.agents.agent_types import AgentType
@@ -11,7 +13,6 @@ from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.prompts import SystemMessagePromptTemplate
 import yaml
 
-# === NEW: Add cache setup ===
 from langchain.globals import set_llm_cache
 from langchain.cache import SQLiteCache
 
@@ -81,14 +82,16 @@ agent = initialize_agent(
     verbose=True,
 )
 
-# === 8. Example queries ===
-if __name__ == "__main__":
-    example_questions = [
-        "Which article has a more positive tone regarding AI regulation?",
-        "What are the main economic trends discussed in the articles?"
-    ]
+# === 8. FastAPI microservice ===
+app = FastAPI()
 
-    for question in example_questions:
-        print(f"Question: {question}")
-        response = agent.run(question)
-        print(f"Answer: {response}\n{'-'*60}\n")
+class AskRequest(BaseModel):
+    question: str
+
+class AskResponse(BaseModel):
+    answer: str
+
+@app.post("/ask", response_model=AskResponse)
+async def ask(request: AskRequest):
+    answer = agent.run(request.question)
+    return AskResponse(answer=answer)
