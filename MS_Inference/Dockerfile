@@ -23,6 +23,7 @@ COPY . .
 
 # Set environment variables from .env if present
 # (You may want to use docker-compose for this in production)
+EXPOSE 5002
 
 # Default command
-CMD ["uvicorn", "inference:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "inference:app", "--host", "0.0.0.0", "--port", "5002"]
