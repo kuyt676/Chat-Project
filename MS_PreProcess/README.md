@@ -1,4 +1,5 @@
 # Article Analyzer Microservice
+![Architecture Diagram](preProcess-architecture.png)
 
 This microservice analyzes news or article content using OpenAI and LangChain. It extracts tone, sentiment, keywords, topics, and named entities, and stores the results in a SQLite database and a FAISS vector store.
 
