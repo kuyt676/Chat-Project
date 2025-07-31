@@ -1,4 +1,5 @@
 # Project Overview
+![Architecture Diagram](chatProject-architecture.png)
 
 This project is built using a microservices architecture and consists of the following components:
 
