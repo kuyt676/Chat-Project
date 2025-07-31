@@ -18,9 +18,11 @@ from langchain.cache import SQLiteCache
 # Set up a persistent cache using SQLite
 set_llm_cache(SQLiteCache(database_path=".langchain.db"))
 
-# === 1. Load the system prompt for the agent from YAML ===
-with open("system_prompt.yaml", "r", encoding="utf-8") as f:
-    system_prompt_text = yaml.safe_load(f)["system_prompt"]
+# === 1. Load the system prompt and tool descriptions from YAML ===
+with open("prompts.yaml", "r", encoding="utf-8") as f:
+    yaml_data = yaml.safe_load(f)
+    system_prompt_text = yaml_data["system_prompt"]
+    tool_descriptions = yaml_data["tool_descriptions"]
 
 system_message_prompt = SystemMessagePromptTemplate.from_template(system_prompt_text)
 
@@ -56,17 +58,17 @@ tools = [
     Tool(
         name="SQLSearch",
         func=sql_search_tool,
-        description="Use this tool to answer questions about structured data like sentiment, topics, and article summaries."
+        description=tool_descriptions["SQLSearch"]
     ),
     Tool(
         name="VectorDBSearch",
         func=vector_search_tool,
-        description="Use this tool for semantic search over article content when the question is open-ended or requires contextual understanding."
+        description=tool_descriptions["VectorDBSearch"]
     ),
     Tool(
         name="SummarizeArticle",
         func=summarize_article_tool,
-        description="Use this tool to summarize the full text of an article. Input should be the article content."
+        description=tool_descriptions["SummarizeArticle"]
     )
 ]
 

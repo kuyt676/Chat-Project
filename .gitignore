@@ -19,8 +19,6 @@ articles.db
 # FAISS vector store
 faiss_articles/
 
-# System prompt and other YAMLs (if sensitive)
-system_prompt.yaml
 
 # Docker
 *.log

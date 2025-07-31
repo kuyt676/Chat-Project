@@ -8,7 +8,7 @@ This project is an intelligent research assistant for answering questions about 
 
 ```sh
 git clone <your-repo-url>
-cd chatProject
+cd MS_Inference
 ```
 
 ### 2. Install Dependencies
